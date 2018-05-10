@@ -1,5 +1,6 @@
 package com.jay.java8.streamapi;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -36,8 +37,58 @@ public class StreamAPI {
 		Map<String, Integer> Sortedmap = mapGenericSortingByValue(map);
 		System.out.println("hfkshkfhsfhaskfhks");
 		Sortedmap.forEach((K, V)->{System.out.println(K + ":" + V);});
+		
+		removeNullValues();
+		
+		groupingAndCounting();
+	}
+	
+	public static void	groupingAndCounting() {
+		 List<Item> items = Arrays.asList(
+	                new Item("apple", 10, new BigDecimal("11.99")),
+	                new Item("banana", 20, new BigDecimal("19.99")),
+	                new Item("orange", 10, new BigDecimal("29.99")),
+	                new Item("watermelon", 10, new BigDecimal("29.99")),
+	                new Item("papaya", 20, new BigDecimal("9.99")),
+	                new Item("apple", 10, new BigDecimal("9.99")),
+	                new Item("banana", 10, new BigDecimal("19.99")),
+	                new Item("apple", 20, new BigDecimal("9.99"))
+	        );
+		 
+		 	System.out.println("*********** Item and Count ***********");
+	        Map<String, Long> counting = items.stream().collect(
+	                Collectors.groupingBy(Item::getName, Collectors.counting()));
+	        System.out.println(counting);
+	        
+	        System.out.println("*********** Item and Quantity ***********");
+	        Map<String, Integer> sum = items.stream().collect(
+	                Collectors.groupingBy(Item::getName, Collectors.summingInt(Item::getQty)));
+	        System.out.println(sum);
+	        
+	        System.out.println("*********** Item and item's Total price ***********");
+	        Map<String, Double> totalSum = items.stream().collect(
+	                Collectors.groupingBy(Item::getName, Collectors.summingDouble((Item::getPrice))));
+	        System.out.println(totalSum);
 	}
 
+	public static void removeNullValues() {
+		List<String> list = new ArrayList<String>();
+		list.add("Jay");
+		list.add(null);
+		list.add("Sanjay");
+		list.add("Vijay");
+		list.add("Ajay");
+		list.add(null);
+		list.add("Vikas");
+		list.add("Praveen");
+		
+		list.forEach(System.out::println);
+		System.out.println("After removing null values");
+		List<String> list2 = list.stream().filter(x->x!=null).collect(Collectors.toList());
+//		List<String> list3 = list.stream().filter(Objects::notNull).collect(Collectors.toList());
+		list2.forEach(System.out::println);
+	}
+	
 	public static void personTest() {
 		List<Person> persons = Arrays.asList(new Person("mkyong", 30, 2000.0),
 				new Person("jack", 23, 78451.0), new Person("lawrence", 40,
@@ -231,5 +282,36 @@ class Person {
 	public String toString() {
 		return "Person [name=" + name + ", age=" + age + ", salary=" + salary
 				+ "]";
+	}
+}
+
+class Item {
+
+    private String name;
+    private int qty;
+    private BigDecimal price;
+	public Item(String name, int qty, BigDecimal price) {
+		super();
+		this.name = name;
+		this.qty = qty;
+		this.price = price;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getQty() {
+		return qty;
+	}
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+	public double getPrice() {
+		return price.doubleValue();
+	}
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 }
