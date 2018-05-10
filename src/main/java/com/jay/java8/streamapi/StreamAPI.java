@@ -25,6 +25,17 @@ public class StreamAPI {
 		streamToList();
 		mapSorting();
 		mapSortByValue();
+		
+		Map<String, Integer> map = new HashMap<>();
+		
+		map.put("AbC", 45);
+		map.put("PQR", 63);
+		map.put("Flag", 95);
+		map.put("Dgdf", 4);
+		map.put("Jay", 56);
+		Map<String, Integer> Sortedmap = mapGenericSortingByValue(map);
+		System.out.println("hfkshkfhsfhaskfhks");
+		Sortedmap.forEach((K, V)->{System.out.println(K + ":" + V);});
 	}
 
 	public static void personTest() {
@@ -73,6 +84,23 @@ public class StreamAPI {
 		System.out.println(pes);
 	}
 
+	public static <K, V extends Comparable<V>> Map<K, V> mapGenericSortingByValue(Map<K, V> map) {
+		System.out.println("**************** Sort by Value ****************");
+		// Ascending Order		
+		Map<K, V> sortedMap =map.entrySet().stream().sorted(Map.Entry.comparingByValue())
+		.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue)->oldValue, LinkedHashMap::new));
+		sortedMap.forEach((K, V)->{System.out.println(K + ":" + V);});
+
+		System.out.println("************* Reverse Order ");
+		// Descending Order
+		Map<K, V> sortedRevMap =map.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue)->oldValue, LinkedHashMap::new));
+		
+				sortedRevMap.forEach((K, V)->{System.out.println(K + ":" + V);});
+				return sortedMap;
+	}
+	
+	
 	public static void mapSorting() {
 		Map<String, Integer> map = new HashMap<>();
 		
