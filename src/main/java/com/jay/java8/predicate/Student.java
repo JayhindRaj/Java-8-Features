@@ -1,6 +1,7 @@
 package com.jay.java8.predicate;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Student {
 	private Long studentId;
@@ -8,15 +9,37 @@ public class Student {
 	private String lName;
 	private LocalDate dob;
 	private Address address;
-	private Marks marks;
+	public Marks marks;
+	private List<String> activities;
+	
+	public List<String> getActivities() {
+		return activities;
+	}
 
-	public Student(Long studentId, String fName, String lName, LocalDate dob, Address address, Marks marks) {
+	public void setActivities(List<String> activities) {
+		this.activities = activities;
+	}
+
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Student(String fname) {
+		this.fName = fname;
+	}
+	
+	public Student(Long id ,String fname) {
+		this.fName = fname;
+		this.studentId = id;
+	}
+	public Student(Long studentId, String fName, String lName, LocalDate dob, Address address, Marks marks, List<String> activities) {
 		this.studentId = studentId;
 		this.fName = fName;
 		this.lName = lName;
 		this.dob = dob;
 		this.address = address;
 		this.marks = marks;
+		this.activities = activities;
 	}
 
 	public Long getStudentId() {
@@ -59,6 +82,9 @@ public class Student {
 		this.address = address;
 	}
 
+	public void printMarks() {
+		System.out.println(marks);
+	}
 	public Marks getMarks() {
 		return marks;
 	}
@@ -70,6 +96,6 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [studentId=" + studentId + ", fName=" + fName + ", lName=" + lName + ", dob=" + dob
-				+ ", address=" + address + ", marks=" + marks + "]";
+				+ ", address=" + address + ", marks=" + marks + ", activities=" + activities + "]";
 	}
 }

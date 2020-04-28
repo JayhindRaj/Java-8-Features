@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalDouble;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,28 +20,51 @@ import java.util.stream.Stream;
  */
 public class StreamAPI {
 
+	public static  void test() {
+		List<Animal> animalStream = new ArrayList<>();
+		animalStream.add(new Animal("Dog", "Black"));
+		animalStream.add(new Animal("Cat", "Brown"));
+		animalStream.add(new Animal("Cow", "Brown"));
+		animalStream.add(new Animal("Cow", "Black"));
+		animalStream.add(new Animal("Cow", "Red"));
+		animalStream.add(new Animal("Dog", "White"));
+		animalStream.add(new Animal("Cat", "Black"));
+		
+		Map<String, Integer> map = animalStream.stream().collect(
+			    Collectors.groupingBy(Animal::getName,
+			        Collectors.collectingAndThen(
+			            Collectors.mapping(Animal::getColor, Collectors.toSet()),
+			            Set::size)));
+		
+		
+		System.out.println(map);
+		
+		
+	}
+	
 	public static void main(String[] args) {
 		// SumOfIntegers();
+		test();
 //		personTest();
 		
-		streamToList();
-		mapSorting();
-		mapSortByValue();
-		
-		Map<String, Integer> map = new HashMap<>();
-		
-		map.put("AbC", 45);
-		map.put("PQR", 63);
-		map.put("Flag", 95);
-		map.put("Dgdf", 4);
-		map.put("Jay", 56);
-		Map<String, Integer> Sortedmap = mapGenericSortingByValue(map);
-		System.out.println("hfkshkfhsfhaskfhks");
-		Sortedmap.forEach((K, V)->{System.out.println(K + ":" + V);});
-		
-		removeNullValues();
-		
-		groupingAndCounting();
+//		streamToList();
+//		mapSorting();
+//		mapSortByValue();
+//		
+//		Map<String, Integer> map = new HashMap<>();
+//		
+//		map.put("AbC", 45);
+//		map.put("PQR", 63);
+//		map.put("Flag", 95);
+//		map.put("Dgdf", 4);
+//		map.put("Jay", 56);
+//		Map<String, Integer> Sortedmap = mapGenericSortingByValue(map);
+//		System.out.println("hfkshkfhsfhaskfhks");
+//		Sortedmap.forEach((K, V)->{System.out.println(K + ":" + V);});
+//		
+//		removeNullValues();
+//		
+//		groupingAndCounting();
 	}
 	
 	public static void	groupingAndCounting() {
