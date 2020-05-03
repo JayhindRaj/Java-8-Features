@@ -1,101 +1,166 @@
 package com.jay.java8.predicate;
 
+import com.jay.java8.model.Bike;
+
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class Student {
-	private Long studentId;
-	private String fName;
-	private String lName;
-	private LocalDate dob;
-	private Address address;
-	public Marks marks;
-	private List<String> activities;
-	
-	public List<String> getActivities() {
-		return activities;
-	}
+    public Marks marks;
+    private Long studentId;
+    private String fName;
+    private String lName;
+    private LocalDate dob;
+    private Address address;
+    private List<String> activities;
+    private int noteBooks;
+    private String gender;
+    private Optional<Bike> bike = Optional.empty();
 
-	public void setActivities(List<String> activities) {
-		this.activities = activities;
-	}
+    public Student() {
+    }
 
-	public Student() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Student(String fname) {
-		this.fName = fname;
-	}
-	
-	public Student(Long id ,String fname) {
-		this.fName = fname;
-		this.studentId = id;
-	}
-	public Student(Long studentId, String fName, String lName, LocalDate dob, Address address, Marks marks, List<String> activities) {
-		this.studentId = studentId;
-		this.fName = fName;
-		this.lName = lName;
-		this.dob = dob;
-		this.address = address;
-		this.marks = marks;
-		this.activities = activities;
-	}
+    public Student(String fName) {
+        this.fName = fName;
+    }
 
-	public Long getStudentId() {
-		return studentId;
-	}
+    public Student(Long id, String fName) {
+        this.fName = fName;
+        this.studentId = id;
+    }
 
-	public void setStudentId(Long studentId) {
-		this.studentId = studentId;
-	}
+    public Student(Long studentId, String fName, String lName, LocalDate dob, Address address, Marks marks, List<String> activities) {
+        this.studentId = studentId;
+        this.fName = fName;
+        this.lName = lName;
+        this.dob = dob;
+        this.address = address;
+        this.marks = marks;
+        this.activities = activities;
+    }
 
-	public String getfName() {
-		return fName;
-	}
+    public Student(Long studentId, String fName, String lName, LocalDate dob, Address address, Marks marks, List<String> activities, int noteBooks) {
+        this.studentId = studentId;
+        this.fName = fName;
+        this.lName = lName;
+        this.dob = dob;
+        this.address = address;
+        this.marks = marks;
+        this.activities = activities;
+        this.noteBooks = noteBooks;
+    }
 
-	public void setfName(String fName) {
-		this.fName = fName;
-	}
+    public Student(Long studentId, String fName, String lName, LocalDate dob, Address address, Marks marks, List<String> activities, int noteBooks, String gender) {
+        this.studentId = studentId;
+        this.fName = fName;
+        this.lName = lName;
+        this.dob = dob;
+        this.address = address;
+        this.marks = marks;
+        this.activities = activities;
+        this.noteBooks = noteBooks;
+        this.gender = gender;
+    }
 
-	public String getlName() {
-		return lName;
-	}
+    public Optional<Bike> getBike() {
+        return bike;
+    }
 
-	public void setlName(String lName) {
-		this.lName = lName;
-	}
+    public void setBike(Optional<Bike> bike) {
+        this.bike = bike;
+    }
 
-	public LocalDate getDob() {
-		return dob;
-	}
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                ", dob=" + dob +
+                ", address=" + address +
+                ", marks=" + marks +
+                ", activities=" + activities +
+                ", noteBooks=" + noteBooks +
+                ", gender='" + gender + '\'' +
+                ", bike=" + bike +
+                '}';
+    }
 
-	public void setDob(LocalDate dob) {
-		this.dob = dob;
-	}
+    public Long getStudentId() {
+        return studentId;
+    }
 
-	public Address getAddress() {
-		return address;
-	}
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+    public String getfName() {
+        return fName;
+    }
 
-	public void printMarks() {
-		System.out.println(marks);
-	}
-	public Marks getMarks() {
-		return marks;
-	}
+    public void setfName(String fName) {
+        this.fName = fName;
+    }
 
-	public void setMarks(Marks marks) {
-		this.marks = marks;
-	}
+    public String getlName() {
+        return lName;
+    }
 
-	@Override
-	public String toString() {
-		return "Student [studentId=" + studentId + ", fName=" + fName + ", lName=" + lName + ", dob=" + dob
-				+ ", address=" + address + ", marks=" + marks + ", activities=" + activities + "]";
-	}
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public void printMarks() {
+        System.out.println(marks);
+    }
+
+    public Marks getMarks() {
+        return marks;
+    }
+
+    public void setMarks(Marks marks) {
+        this.marks = marks;
+    }
+
+    public List<String> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<String> activities) {
+        this.activities = activities;
+    }
+
+    public int getNoteBooks() {
+        return noteBooks;
+    }
+
+    public void setNoteBooks(int noteBooks) {
+        this.noteBooks = noteBooks;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
 }
