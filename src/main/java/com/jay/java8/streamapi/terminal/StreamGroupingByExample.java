@@ -51,7 +51,7 @@ public class StreamGroupingByExample {
         System.out.println("threeArgumentGroupingBy: " + twoLevelGrouping);
     }
 
-    public static void getTooperGenderWise() {
+    public static void getTopperGenderWise() {
         Map<String, Optional<Student>> twoLevelGrouping =
                 StudentStore.getStudents().stream()
                         .collect(groupingBy(Student::getGender, maxBy(Comparator.comparing(Student::getNoteBooks))));
@@ -59,7 +59,7 @@ public class StreamGroupingByExample {
         System.out.println("threeArgumentGroupingBy: " + twoLevelGrouping);
     }
 
-    public static void getlessBooksGenderWise() {
+    public static void getLessBooksGenderWise() {
         Map<String, Student> twoLevelGrouping =
                 StudentStore.getStudents().stream()
                         .collect(groupingBy(Student::getGender, collectingAndThen(minBy(Comparator.comparing(Student::getNoteBooks)), Optional::get)));
@@ -74,8 +74,7 @@ public class StreamGroupingByExample {
 //        twoLevelGroupingBy_2();
 //        twoLevelGroupingBy_3();
 //        threeArgumentGroupingBy();
-        getTooperGenderWise();
-
-        getlessBooksGenderWise();
+        getTopperGenderWise();
+        getLessBooksGenderWise();
     }
 }

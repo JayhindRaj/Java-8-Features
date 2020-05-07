@@ -38,7 +38,7 @@ public class StudentStore {
         students.add(new Student(1003L, "Rashmi", "Gupta", LocalDate.of(1994, 12, 10),
                 new Address("Indria Nagar", "UP", "Orai", "Jalaun", 218005), new Marks(65, 57, 62, 72, 88), Arrays.asList("Dancing", "Writing", "Running"), 9, "Female"));
 
-        students.add(null);
+//        students.add(null);
     }
 
     public static List<Student> getStudents() {
